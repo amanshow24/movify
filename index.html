@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movify</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="responsive.css" />
+</head>
+<body>
+  <header>
+    <h1>🎬 Movify</h1>
+    <div class="controls">
+      <div class="search-wrapper">
+        <input type="text" id="search-input" placeholder="Search for movies..." />
+      <div id="suggestions" class="suggestions hidden"></div>
+    </div>
+      <button id="search-button">Search</button>
+      <button id="surprise-button"> Surprise Me</button>
+
+      <select id="genre-filter">
+        <option value="">All Genres</option>
+      </select>
+      <div class="category-buttons">
+        <button class="category-btn" data-type="trending">🔥 Trending</button>
+        <button class="category-btn" data-type="popular">🌟 Popular</button>
+        <button class="category-btn" data-type="top_rated">🏆 Top Rated</button>
+        <button class="category-btn" data-type="upcoming">🎬 Upcoming</button>
+      </div>
+      <button id="toggle-watchlist">🎞 View Watchlist</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="movies-container"></section>
+  </main>
+
+  <!-- Movie Detail Modal -->
+  <div id="movie-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <img id="modal-poster" src="" alt="Movie Poster" />
+      <h2 id="modal-title"></h2>
+      <p id="modal-rating"></p>
+      <p id="modal-release"></p>
+      <p id="modal-overview"></p>
+
+      <div id="trailer-container" class="hidden">
+        <h3 class="modal-heading">🎞 Trailer</h3>
+        <iframe id="trailer-video" width="100%" height="200" frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <div id="extra-details" class="extra-details hidden">
+        <div class="details-grid">
+          <p><span class="label">⏱ Runtime:</span> <span id="modal-runtime"></span></p>
+          <p><span class="label">🎞 Genres:</span> <span id="modal-genres"></span></p>
+         <p><span class="label">🎬 Crew:</span> <span id="modal-crew"></span></p>
+          <p><span class="label">💰 Budget:</span> <span id="modal-budget"></span></p>
+          <p><span class="label">💵 Revenue:</span> <span id="modal-revenue"></span></p>
+        </div>
+
+        <div id="modal-cast">
+          <h3 class="modal-heading">🎭 Cast</h3>
+          <!-- Injected by JS -->
+        </div>
+
+        <div id="modal-reviews">
+          <h3 class="modal-heading">📝 Reviews</h3>
+          <ul id="review-list"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <footer id="trivia-section" class="trivia-section">
+  <p>Facts and Trivia - </p>
+  <p id="trivia-text">🎥 Loading trivia...</p>
+   </footer>
+
+
+<!-- 📢 FAQ Section -->
+<section class="faq-section">
+  <h2> Frequently Asked Questions</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <button class="faq-question">
+        What is Movify?
+        <span class="toggle-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        Movify is a movie discovery app powered by the TMDB API that helps users explore movies, watch trailers, read reviews, and manage a personal watchlist.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Is Movify free to use?
+        <span class="toggle-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        Yes! Movify is completely free and open to all users without any subscriptions or hidden charges.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        How do I search for a specific movie or TV show?
+        <span class="toggle-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        Use the search bar at the top of the page. Start typing the movie name, and suggestions will appear. Press Enter or click Search to see full results.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Can I filter results by genre or release year?
+        <span class="toggle-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        Yes, you can filter movies by genre using the dropdown next to the search bar. More filters may be added in future updates.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        How do I view trailers and cast info?
+        <span class="toggle-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        Click on any movie card to open its modal. You'll find trailer, cast, crew, runtime, budget, and more details there.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        How do I add a movie to my watchlist?
+        <span class="toggle-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        Every movie card has an "Add to Watchlist" button. Click it to save the movie. Your list is stored in your browser's local storage.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What does the “Surprise Me” feature do?
+        <span class="toggle-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        It randomly picks a popular movie and shows its full info instantly — perfect for when you’re unsure what to watch.
+      </div>
+    </div>
+  </div>
+  <div class="faq-item">
+      <button class="faq-question">
+        Will my watchlist be saved if I close the app?
+        <span class="toggle-icon">+</span>
+      </button>
+      <div class="faq-answer">Yes. Your watchlist is stored locally and will remain unless you clear your browser’s data.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Why isn’t the trailer loading or showing up?
+        <span class="toggle-icon">+</span>
+      </button>
+      <div class="faq-answer">Some movies don’t have trailers. Ensure you have internet connection. Try another movie if it still doesn’t work.</div>
+    </div>
+
+  </div>
+</section>
+
+  <div class="footer-content">
+    <p>Questions? Email us at <a href="mailto:support@movify.com">support@movify.com</a></p>
+
+    <div class="footer-links">
+      <div><a href="#">FAQ</a></div>
+      <div><a href="#">Watchlist</a></div>
+      <div><a href="#">Contact Us</a></div>
+      <div><a href="#">Terms of Use</a></div>
+      <div><a href="#">Privacy Policy</a></div>
+    </div>
+
+    <div class="language-selector">
+      <select>
+        <option value="en">🌐 English</option>
+        <option value="hi">🇮🇳 Hindi</option>
+      </select>
+    </div>
+
+
+    <div class="footer-bottom">
+  <p class="country-text">Movify India</p>
+  <p>&copy; 2025 Movify. All rights reserved. Aman Show</p>
+  <p><a href="https://developer.themoviedb.org/docs/getting-started">API Source : TMDB API</a></p>
+</div>
+
+  </div>
+
+  <div class="footer-spacing-end"></div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,565 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0f0f0f;
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+  background-color: #1c1c1c;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #ff4444;
+}
+
+/* Search and Filter Controls */
+header input,
+header select,
+header button {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  margin: 0.3rem;
+}
+
+#search-input {
+  width: 250px;
+}
+
+#search-button {
+  background-color: #ff4444;
+  color: white;
+  cursor: pointer;
+}
+
+#search-button:hover {
+  background-color: #e03434;
+}
+
+#genre-filter {
+  background-color: #2c2c2c;
+  color: #fff;
+}
+#toggle-watchlist {
+  background-color: #2e7d32;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  margin: 0.3rem;
+  cursor: pointer;
+}
+
+#toggle-watchlist:hover {
+  background-color: #1b5e20;
+}
+
+/* Main Content Grid */
+main {
+  padding: 2rem 1rem;
+}
+
+#movies-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+
+.movie-card {
+  width: 180px;
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card img {
+  width: 100%;
+  display: block;
+  height: 270px;
+  object-fit: cover;
+}
+
+/* Title & Rating */
+.movie-card .title {
+  padding: 0.8rem 0.5rem 0.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: #f1f1f1;
+}
+
+.movie-card .rating {
+  text-align: center;
+  padding-bottom: 0.8rem;
+  font-size: 0.95rem;
+  color: #ffc107;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: #1f1f1f;
+  padding: 1.5rem;
+  border-radius: 12px;
+  color: white;
+  max-width: 600px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  text-align: center;
+  position: relative;
+}
+.modal-heading {
+  font-size: 1.4rem !important;
+  font-weight: bold;
+  margin: 0.8rem 0;
+  color: #ffc107;
+  text-align: left;
+}
+
+
+.modal-content h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+  color: #ffcc00;
+}
+
+
+.modal-content p {
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.5;
+}
+#modal-rating {
+  color: #ffc107;
+  font-weight: 600;
+}
+
+#modal-release {
+  color: #87cefa;
+  font-weight: 500;
+}
+
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain; /* 🔄 change from cover to contain */
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background-color: #000; /* optional: to avoid empty space looking awkward */
+}
+
+
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;          /* increased from 1.5rem */
+  cursor: pointer;
+  color: #ffffff;
+  z-index: 1001;
+  padding: 0.3rem 0.6rem;    /* optional: adds some padding for a bigger click area */
+  line-height: 1;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.close-button:hover {
+  background-color: #333;    /* optional hover effect */
+}
+
+
+#trailer-container {
+  margin-top: 1rem;
+}
+
+#trailer-container.hidden {
+  display: none;
+}
+
+#trailer-container h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #ffc107;
+}
+.watchlist-btn {
+  display: block;
+  margin: 0.5rem auto 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #444;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.watchlist-btn:hover {
+  background-color: #666;
+}
+
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+.toast.hidden {
+  display: none;
+}
+
+.category-buttons {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.category-btn {
+  background-color: #2c2c2c;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  margin: 0.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.category-btn:hover {
+  background-color: #444;
+}
+
+.search-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #1c1c1c;
+  color: white;
+  width: 250px;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #444;
+  border-radius: 4px;
+  z-index: 1000;
+  margin-top: 0.2rem;
+}
+
+.suggestions div {
+  padding: 0.5rem;
+  cursor: pointer;
+  border-bottom: 1px solid #333;
+}
+
+.suggestions div:hover {
+  background-color: #333;
+}
+
+.suggestions.hidden {
+  display: none;
+}
+
+#modal-crew {
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.6;
+  font-size: 1.05rem;
+  color: #ddd;
+  margin-top: 0.5rem;
+}
+.crew-role {
+  font-weight: bold;
+  color: white;
+  display: inline-block;
+  margin-bottom: 0.2rem;
+}
+
+/* Extra Info Section */
+.extra-details {
+  margin-top: 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+  background-color: #2c2c2c;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.details-grid p {
+  margin: 0;
+  display: flex;
+  gap: 0.4rem;
+  line-height: 1.5;
+  color: #ddd;
+}
+
+.label {
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Cast & Reviews */
+.cast-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+  justify-items: center;
+}
+
+.cast-member {
+  text-align: center;
+  font-size: 0.85rem;
+  background-color: #2a2a2a;
+  padding: 0.5rem;
+  border-radius: 10px;
+  width: 100px;
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
+  color: #eee;
+}
+
+.cast-member:hover {
+  transform: scale(1.05);
+}
+
+.cast-member img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.4rem;
+}
+
+#modal-reviews {
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 5px;
+  border-top: 1px solid #444;
+  margin-top: 1rem;
+}
+
+#modal-reviews::-webkit-scrollbar {
+  width: 5px;
+}
+
+#modal-reviews::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 10px;
+}
+
+#review-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+#review-list li {
+  margin-bottom: 0.7rem;
+  border-left: 3px solid #555;
+  padding-left: 0.7rem;
+  font-style: italic;
+  color: #ddd;
+}
+
+#modal-cast {
+  margin-bottom: 1.5rem;
+}
+
+#modal-reviews {
+  margin-top: 1.5rem;
+}
+
+.trivia-section {
+  text-align: center;
+  padding: 1.2rem 1rem;
+  background-color: #1c1c1c;
+  color: #87cefa;
+  font-size: 1rem;
+  border-top: 1px solid #333;
+  margin-top: 2rem;
+  font-style: italic;
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: 2rem 1rem;
+  background-color: #111;
+  color: #f0f0f0;
+  max-width: 800px;
+  margin: 2rem auto;
+  border-top: 1px solid #333;
+}
+
+.faq-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #ffc107;
+}
+
+.faq-item {
+  border-bottom: 1px solid #444;
+  margin-bottom: 1rem;
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 1rem 0.5rem;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question:hover {
+  color: #ffc107;
+}
+
+.toggle-icon {
+  font-size: 1.6rem;
+  color: #ffc107;
+  transition: transform 0.3s ease;
+}
+
+.faq-answer {
+  padding: 0 0.8rem 1rem;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  display: none;
+  color: #ddd;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+
+/* Footer Style Like Netflix */
+.site-footer {
+  background-color: #000;
+  color: #aaa;
+  padding: 2rem 1rem;
+  font-size: 0.95rem;
+  text-align: center;
+  border-top: 1px solid #333;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.footer-content a {
+  color: #aaa;
+  text-decoration: none;
+}
+
+.footer-content a:hover {
+  text-decoration: underline;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.language-selector select {
+  padding: 0.5rem 1rem;
+  background-color: #111;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 4px;
+}
+
+.country-text {
+  margin-top: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem; /* adds spacing between © and API source */
+  margin-top: 1rem;
+}
+
+.footer-spacing-end {
+  height: 160px; /* you can increase this for more space */
+  background-color: none; /* match the black footer background */
+}
+
