@@ -460,6 +460,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentItem = button.closest(".faq-item");
       const isActive = currentItem.classList.contains("active");
 
+      
       document.querySelectorAll(".faq-item").forEach(item => {
         item.classList.remove("active");
         item.querySelector(".toggle-icon").textContent = "+";
