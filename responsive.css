@@ -30,6 +30,10 @@
     font-size: 2rem;
   }
 
+  #search-input {
+    width: 200px;
+  }
+
   .controls {
     flex-direction: column;
     align-items: center;
@@ -41,8 +45,7 @@
   }
 
   .movie-card {
-    width: 45%;
-    margin: 0.5rem;
+    width: 140px;
   }
 
   .modal-content h2 {
@@ -65,35 +68,46 @@
   }
 
   header h1 {
-    font-size: 1.7rem;
-    margin-bottom: 0.6rem;
+    font-size: 2.1rem;
+    margin-bottom: 1rem;
   }
 
   .controls {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: stretch;
+  }
+
+  .search-wrapper {
+    display: flex;
     gap: 0.5rem;
-    justify-content: center;
+    flex: 1;
   }
 
   #search-input {
-    flex: 1 1 55%;
-    min-width: 130px;
-    padding: 0.4rem;
-    font-size: 0.95rem;
+    flex: 1;
+    font-size: 1rem;
+    padding: 0.5rem;
   }
 
-  #genre-select {
-    flex: 1 1 30%;
-    min-width: 90px;
+  #search-button {
+    padding: 0.5rem 0.8rem;
     font-size: 0.9rem;
-    padding: 0.4rem;
+    white-space: nowrap;
   }
 
-  .controls button {
-    flex: 1 1 30%;
-    padding: 0.4rem 0.6rem;
+  #genre-filter {
+    width: 100%;
     font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  #surprise-button,
+  #toggle-watchlist {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.5rem;
   }
 
   .category-buttons {
@@ -101,19 +115,20 @@
     flex-wrap: wrap;
     gap: 0.4rem;
     justify-content: center;
+    margin-top: 0.5rem;
   }
 
   .category-btn {
-    padding: 0.5rem 0.9rem;
+    flex: 1 1 48%;
     font-size: 0.85rem;
-    flex: 1 1 45%;
+    padding: 0.4rem 0.6rem;
     text-align: center;
   }
 
   .movie-card {
-    width: 48%;
-    max-width: 160px;
-    margin: 0.3rem auto;
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
   }
 
   .modal-content {
